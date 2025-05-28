@@ -8,69 +8,74 @@ export default function App() {
   const [imagemExpandida, setImagemExpandida] = useState(null);
 
   useEffect(() => {
-    document.title = "Jonas Kasakewitch | Portfólio";
+    document.title = "Nathan Thomaz | Portfólio";
   }, []);
 
   return (
     <div className="bg-black text-white font-sans">
       {/* HERO COM LAYOUT EM DUAS COLUNAS */}
-      <section className="relative bg-black min-h-screen flex flex-col justify-center">
-        <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 items-center gap-12">
-          {/* Texto à esquerda */}
-          <div>
-            <motion.h1
-              className="text-5xl md:text-7xl font-bold leading-tight mb-6"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <span className="text-red-500">
-                <Typewriter
-                  words={['Bem Vindo.', 'Welcome.']}
-                  loop={0}
-                  cursor
-                  cursorStyle="|"
-                  typeSpeed={80}
-                  deleteSpeed={50}
-                  delaySpeed={1500}
-                />
-              </span>
-            </motion.h1>
+<section className="relative bg-black min-h-screen flex items-center py-12 px-6 overflow-hidden">
+  <div className="max-w-[90rem] w-full mx-auto grid md:grid-cols-2 gap-28 items-center z-10 mb-40">
+    
+    {/* Texto */}
+    <div>
+      <motion.h1
+        className="text-6xl md:text-8xl font-bold text-red-500 mb-6"
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <Typewriter
+          words={['Bem-vindo!', 'Welcome!']}
+          loop={0}
+          cursor
+          cursorStyle="|"
+          typeSpeed={70}
+          deleteSpeed={50}
+          delaySpeed={1500}
+        />
+      </motion.h1>
 
-            <motion.p
-              className="text-lg md:text-2xl text-gray-300"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-            >
-              Sou o Jonas um profissional com mais de 10 anos de experiência em dados, especialista em pipelines, modelagem dimensional, 
-              integrações com APIs e arquitetura em nuvem. Já atuei em projetos com Azure, AWS e GCP.
-            </motion.p>
-          </div>
+      <motion.p
+        className="text-lg md:text-xl text-gray-300 text-justify leading-relaxed"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 1 }}
+      >
+        👋 Olá, sou <strong>Nathan Thomaz</strong>,<br /><br />
+        <strong>Engenheiro de Dados</strong> com forte atuação em ambientes <strong>multicloud (AWS, Azure e GCP)</strong> e entusiasta na criação de <strong>pipelines escaláveis</strong>, <strong>automação de processos</strong> e integração de dados <strong>estruturados</strong> e <strong>não estruturados</strong>. Atualmente trabalho com engenharia de dados na <strong>DataVerse</strong>, além de cursar o 7º período de <strong>Sistemas de Informação</strong> na Faculdade LaSalle de Niterói.<br /><br />
 
-          {/* Imagem com fundo brilhante radial */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative flex justify-center items-center"
-          >
-            <div className="absolute w-[500px] h-[500px] rounded-full bg-black opacity-60 blur-3xl z-0" />
-            <img
-              src="/Portfolio/images/logo1.png"
-              alt="Imagem de computador"
-              className="relative z-10 w-[300px] md:w-[400px]"
-            />
-          </motion.div>
-        </div>
+        Meu portfólio reúne projetos que exploram desde a automação com <strong>Python</strong> e <strong>Shell Script</strong>, até soluções robustas com <strong>PySpark</strong>, bancos de dados <strong>Oracle</strong> e ferramentas ETL como <strong>Pentaho</strong> e <strong>PowerCenter</strong>. Também atuo na criação de <strong>dashboards analíticos</strong> e <strong>RPA</strong>, com foco em <strong>eficiência</strong>, <strong>qualidade de dados</strong> e <strong>insights estratégicos</strong>.<br /><br />
 
-        {/* ONDA DECORATIVA */}
-        <div className="absolute bottom-0 w-full overflow-hidden leading-none">
-          <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
-          </svg>
-        </div>
-      </section>
+        Tenho perfil <strong>analítico</strong>, <strong>colaborativo</strong> e <strong>orientado a resultados</strong>, sempre buscando aliar teoria e prática para entregar soluções que geram <strong>valor real para o negócio</strong>. Neste espaço, compartilho algumas das soluções que desenvolvi — sinta-se à vontade para explorar!
+      </motion.p>
+    </div>
+
+    {/* Imagem */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1 }}
+      className="relative flex justify-center"
+    >
+      <div className="absolute w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-black opacity-60 blur-3xl z-0" />
+      <img
+        src="/Portfolio/images/logo1.png"
+        alt="Notebook com código"
+        className="relative z-10 w-[280px] md:w-[420px] lg:w-[480px]"
+      />
+    </motion.div>
+  </div>
+
+  {/* Curva decorativa */}
+  <div className="absolute bottom-0 left-0 w-full">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
+    </svg>
+  </div>
+</section>
+
+    
 
       {/* PROJETOS */}
       <section className="px-6 py-20" style={{ backgroundColor: "#0c1a33" }}>
@@ -88,8 +93,8 @@ export default function App() {
                 Dashboard interativo para acompanhar em tempo real a performance das 10 principais criptomoedas, com gráficos dinâmicos, rankings e análises visuais de mercado.
               </p>
               <div className="flex gap-4">
-                <a href="https://github.com/Jonasksa/CryptoPrice-Dashboard" target="_blank" rel="noopener noreferrer"><FaGithub className="w-6 h-6 text-black hover:text-gray-700" /></a>
-                <a href="https://cryptosales.streamlit.app/" target="_blank" rel="noopener noreferrer"><HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" /></a>
+                <a href="https://github.com/NathanThomaz/CryptoPrice-Dashboard" target="_blank" rel="noopener noreferrer"><FaGithub className="w-6 h-6 text-black hover:text-gray-700" /></a>
+                <a href="https://dashcrypto-app.streamlit.app/" target="_blank" rel="noopener noreferrer"><HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" /></a>
               </div>
             </div>
           </motion.div>
