@@ -8,27 +8,30 @@ const anoAtual = new Date().getFullYear();
 
 function Footer() {
   return (
-    <footer className="text-center py-10 bg-black text-gray-500 dark:bg-gray-900 dark:text-gray-400">
+    <footer className="text-center py-4 bg-black text-white text-base relative z-20">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
+        className="max-w-screen-md mx-auto px-4"
       >
-        <p>© {anoAtual} Nathan Thomaz. Todos os direitos reservados.</p>
-        <div className="mt-2 flex justify-center gap-4 text-sm">
+        <p className="mb-2">
+          © {anoAtual} <strong>Nathan Thomaz</strong>. Todos os direitos reservados.
+        </p>
+        <div className="flex justify-center gap-6 flex-wrap">
           <a
             href="https://github.com/NathanThomaz"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline hover:text-white transition"
+            className="hover:underline hover:text-red-400 transition"
           >
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/nathanthomaz"
+            href="https://www.linkedin.com/in/nathan-thomaz-devs/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline hover:text-white transition"
+            className="hover:underline hover:text-red-400 transition"
           >
             LinkedIn
           </a>
@@ -38,40 +41,16 @@ function Footer() {
   );
 }
 
+
+
 export default function App() {
   const [imagemExpandida, setImagemExpandida] = useState(null);
-  const [temaEscuro, setTemaEscuro] = useState(() => {
-    return localStorage.getItem("tema") === "dark";
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (temaEscuro) {
-      root.classList.add("dark");
-      localStorage.setItem("tema", "dark");
-    } else {
-      root.classList.remove("dark");
-      localStorage.setItem("tema", "light");
-    }
-  }, [temaEscuro]);
-
   useEffect(() => {
     document.title = "Nathan Thomaz | Portfólio";
   }, []);
 
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white font-sans transition-colors duration-500">
-      {/* Botão de tema */}
-      <div className="fixed top-4 right-4 z-50">
-        <button
-          onClick={() => setTemaEscuro(!temaEscuro)}
-          className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-4 py-2 rounded-full shadow hover:scale-105 transition"
-        >
-          {temaEscuro ? "☀️ Modo Claro" : "🌙 Modo Escuro"}
-        </button>
-      </div>
-
-      {/* HERO */}
+    <div className="bg-black text-white font-sans transition-colors duration-500">
       <section className="relative bg-black min-h-screen flex items-center py-12 px-6 overflow-hidden">
         <div className="max-w-[90rem] w-full mx-auto grid md:grid-cols-2 gap-28 items-center z-10 mb-40">
           {/* Texto */}
@@ -86,10 +65,10 @@ export default function App() {
                 words={['Bem-vindo!', 'Welcome!']}
                 loop={0}
                 cursor
-                cursorStyle="|"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={1500}
+                cursorStyle="_"
+                typeSpeed={100}
+                deleteSpeed={60}
+                delaySpeed={3000}
               />
             </motion.h1>
 
@@ -125,9 +104,16 @@ export default function App() {
         </div>
 
         {/* Onda decorativa inferior */}
-        <div className="absolute bottom-0 left-0 w-full">
-          <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
+       <div className="absolute bottom-0 left-0 w-full leading-none">
+          <svg
+            viewBox="0 0 1440 120"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            className="block w-full h-[120px]">
+            <path
+              fill="#0c1a33"
+              d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z"
+            />
           </svg>
         </div>
       </section>
@@ -202,21 +188,41 @@ export default function App() {
       </section>
 
       {/* Imagem expandida */}
-      {imagemExpandida && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={() => setImagemExpandida(null)}>
-          <img src={imagemExpandida} alt="Imagem expandida" className="max-w-full max-h-[90vh] rounded-lg shadow-xl" onClick={(e) => e.stopPropagation()} />
-        </div>
-      )}
+        {imagemExpandida && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            onClick={() => setImagemExpandida(null)}
+          >
+            <img
+              src={imagemExpandida}
+              alt="Imagem expandida"
+              className="max-w-full max-h-[90vh] rounded-lg shadow-xl cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation(); // evita que o clique feche duas vezes
+                setImagemExpandida(null); // fecha mesmo clicando na imagem
+              }}
+            />
+          </div>
+        )}
+
 
       {/* Onda decorativa invertida */}
-      <div className="w-full overflow-hidden leading-none rotate-180">
-        <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
+      <div className="w-full overflow-hidden leading-none rotate-180 relative -mb-1 z-10">
+        <svg
+          viewBox="0 0 1440 120"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          className="block w-full h-[120px]"
+        >
+          <path
+            fill="#0c1a33"
+            d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z"
+          />
         </svg>
       </div>
 
       {/* Rodapé */}
-      <Footer />
+      <Footer className="relative z-20"/>
     </div>
   );
 }
