@@ -51,4 +51,4 @@ cd "$PROJECT_ROOT"
 echo " Deploy finalizado com sucesso!"
 
 # Comando para dar permissão de execução ao script
-chmod +x deploy.sh
+# chmod +x deploy.sh
