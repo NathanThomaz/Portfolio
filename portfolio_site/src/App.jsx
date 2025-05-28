@@ -4,80 +4,135 @@ import { Typewriter } from 'react-simple-typewriter';
 import { FaGithub } from "react-icons/fa";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
+const anoAtual = new Date().getFullYear();
+
+function Footer() {
+  return (
+    <footer className="text-center py-10 bg-black text-gray-500 dark:bg-gray-900 dark:text-gray-400">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <p>© {anoAtual} Nathan Thomaz. Todos os direitos reservados.</p>
+        <div className="mt-2 flex justify-center gap-4 text-sm">
+          <a
+            href="https://github.com/NathanThomaz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:text-white transition"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/nathanthomaz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:text-white transition"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </motion.div>
+    </footer>
+  );
+}
+
 export default function App() {
   const [imagemExpandida, setImagemExpandida] = useState(null);
+  const [temaEscuro, setTemaEscuro] = useState(() => {
+    return localStorage.getItem("tema") === "dark";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (temaEscuro) {
+      root.classList.add("dark");
+      localStorage.setItem("tema", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("tema", "light");
+    }
+  }, [temaEscuro]);
 
   useEffect(() => {
     document.title = "Nathan Thomaz | Portfólio";
   }, []);
 
   return (
-    <div className="bg-black text-white font-sans">
-      {/* HERO COM LAYOUT EM DUAS COLUNAS */}
-<section className="relative bg-black min-h-screen flex items-center py-12 px-6 overflow-hidden">
-  <div className="max-w-[90rem] w-full mx-auto grid md:grid-cols-2 gap-28 items-center z-10 mb-40">
-    
-    {/* Texto */}
-    <div>
-      <motion.h1
-        className="text-6xl md:text-8xl font-bold text-red-500 mb-6"
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <Typewriter
-          words={['Bem-vindo!', 'Welcome!']}
-          loop={0}
-          cursor
-          cursorStyle="|"
-          typeSpeed={70}
-          deleteSpeed={50}
-          delaySpeed={1500}
-        />
-      </motion.h1>
+    <div className="bg-white dark:bg-black text-black dark:text-white font-sans transition-colors duration-500">
+      {/* Botão de tema */}
+      <div className="fixed top-4 right-4 z-50">
+        <button
+          onClick={() => setTemaEscuro(!temaEscuro)}
+          className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-4 py-2 rounded-full shadow hover:scale-105 transition"
+        >
+          {temaEscuro ? "☀️ Modo Claro" : "🌙 Modo Escuro"}
+        </button>
+      </div>
 
-      <motion.p
-        className="text-lg md:text-xl text-gray-300 text-justify leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        👋 Olá, sou <strong>Nathan Thomaz</strong>,<br /><br />
-        <strong>Engenheiro de Dados</strong> com forte atuação em ambientes <strong>multicloud (AWS, Azure e GCP)</strong> e entusiasta na criação de <strong>pipelines escaláveis</strong>, <strong>automação de processos</strong> e integração de dados <strong>estruturados</strong> e <strong>não estruturados</strong>. Atualmente trabalho com engenharia de dados na <strong>DataVerse</strong>, além de cursar o 7º período de <strong>Sistemas de Informação</strong> na Faculdade LaSalle de Niterói.<br /><br />
+      {/* HERO */}
+      <section className="relative bg-black min-h-screen flex items-center py-12 px-6 overflow-hidden">
+        <div className="max-w-[90rem] w-full mx-auto grid md:grid-cols-2 gap-28 items-center z-10 mb-40">
+          {/* Texto */}
+          <div>
+            <motion.h1
+              className="text-6xl md:text-8xl font-bold text-red-500 mb-6"
+              initial={{ opacity: 0, y: -40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <Typewriter
+                words={['Bem-vindo!', 'Welcome!']}
+                loop={0}
+                cursor
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+            </motion.h1>
 
-        Meu portfólio reúne projetos que exploram desde a automação com <strong>Python</strong> e <strong>Shell Script</strong>, até soluções robustas com <strong>PySpark</strong>, bancos de dados <strong>Oracle</strong> e ferramentas ETL como <strong>Pentaho</strong> e <strong>PowerCenter</strong>. Também atuo na criação de <strong>dashboards analíticos</strong> e <strong>RPA</strong>, com foco em <strong>eficiência</strong>, <strong>qualidade de dados</strong> e <strong>insights estratégicos</strong>.<br /><br />
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 text-justify leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+            >
+              👋 Olá, sou <strong>Nathan Thomaz</strong>,<br /><br />
+              <strong>Engenheiro de Dados</strong> com forte atuação em ambientes <strong>multicloud (AWS, Azure e GCP)</strong> e entusiasta na criação de <strong>pipelines escaláveis</strong>, <strong>automação de processos</strong> e integração de dados <strong>estruturados</strong> e <strong>não estruturados</strong>. Atualmente trabalho com engenharia de dados na <strong>DataVerse</strong>, além de cursar o 7º período de <strong>Sistemas de Informação</strong> na Faculdade LaSalle de Niterói.<br /><br />
 
-        Tenho perfil <strong>analítico</strong>, <strong>colaborativo</strong> e <strong>orientado a resultados</strong>, sempre buscando aliar teoria e prática para entregar soluções que geram <strong>valor real para o negócio</strong>. Neste espaço, compartilho algumas das soluções que desenvolvi — sinta-se à vontade para explorar!
-      </motion.p>
-    </div>
+              Meu portfólio reúne projetos que exploram desde a automação com <strong>Python</strong> e <strong>Shell Script</strong>, até soluções robustas com <strong>PySpark</strong>, bancos de dados <strong>Oracle</strong> e ferramentas ETL como <strong>Pentaho</strong> e <strong>PowerCenter</strong>. Também atuo na criação de <strong>dashboards analíticos</strong> e <strong>RPA</strong>, com foco em <strong>eficiência</strong>, <strong>qualidade de dados</strong> e <strong>insights estratégicos</strong>.<br /><br />
 
-    {/* Imagem */}
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1 }}
-      className="relative flex justify-center"
-    >
-      <div className="absolute w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-black opacity-60 blur-3xl z-0" />
-      <img
-        src="/Portfolio/images/logo1.png"
-        alt="Notebook com código"
-        className="relative z-10 w-[280px] md:w-[420px] lg:w-[480px]"
-      />
-    </motion.div>
-  </div>
+              Tenho perfil <strong>analítico</strong>, <strong>colaborativo</strong> e <strong>orientado a resultados</strong>, sempre buscando aliar teoria e prática para entregar soluções que geram <strong>valor real para o negócio</strong>. Neste espaço, compartilho algumas das soluções que desenvolvi — sinta-se à vontade para explorar!
+            </motion.p>
+          </div>
 
-  {/* Curva decorativa */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
-    </svg>
-  </div>
-</section>
+          {/* Imagem */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="relative flex justify-center"
+          >
+            <div className="absolute w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-black opacity-60 blur-3xl z-0" />
+            <img
+              src="/Portfolio/images/logo1.png"
+              alt="Notebook com código"
+              className="relative z-10 w-[280px] md:w-[420px] lg:w-[480px]"
+            />
+          </motion.div>
+        </div>
 
-    
+        {/* Onda decorativa inferior */}
+        <div className="absolute bottom-0 left-0 w-full">
+          <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
+          </svg>
+        </div>
+      </section>
 
-      {/* PROJETOS */}
+        {/* PROJETOS */}
       <section className="px-6 py-20" style={{ backgroundColor: "#0c1a33" }}>
         <h2 className="text-4xl font-bold mb-12 text-white text-center relative inline-block before:absolute before:left-0 before:top-2 before:w-1 before:h-full before:bg-red-500 pl-4">
           Projetos
@@ -153,18 +208,15 @@ export default function App() {
         </div>
       )}
 
-      {/* ONDA DECORATIVA INVERTIDA */}
+      {/* Onda decorativa invertida */}
       <div className="w-full overflow-hidden leading-none rotate-180">
         <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
           <path fill="#0c1a33" d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" />
         </svg>
       </div>
 
-      <footer className="text-center py-10 bg-black text-gray-500">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          © {new Date().getFullYear()} Jonas Kasakewitch. Todos os direitos reservados.
-        </motion.p>
-      </footer>
+      {/* Rodapé */}
+      <Footer />
     </div>
   );
 }
