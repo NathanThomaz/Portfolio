@@ -3,8 +3,39 @@ import { motion } from "framer-motion";
 import { Typewriter } from 'react-simple-typewriter';
 import { FaGithub } from "react-icons/fa";
 import { HiOutlineExternalLink } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 
 const anoAtual = new Date().getFullYear();
+const projetos = [
+  {
+    imagem: '/Portfolio/images/projeto1.jpg',
+    titulo: 'CryptoPrice Dashboard',
+    descricao: 'Dashboard interativo para acompanhar em tempo real a performance das 10 principais criptomoedas, com gráficos dinâmicos, rankings e análises visuais de mercado.',
+    linkGit: 'https://github.com/NathanThomaz/CryptoPrice-Dashboard',
+    linkSite: 'https://dashcrypto-app.streamlit.app/',
+  },
+  {
+    imagem: '/Portfolio/images/projeto2.png',
+    titulo: 'Pipeline ETL com Databricks',
+    descricao: 'Processo automatizado com PySpark, particionamento Delta Lake e carga em camada Silver.',
+    linkGit: 'https://github.com/seuusuario/projeto2',
+    linkSite: 'https://seudominio.com/etl',
+  },
+  {
+    imagem: '/Portfolio/images/projeto3.jpg',
+    titulo: 'Integração com APIs REST',
+    descricao: 'Desenvolvimento de pipelines com chamadas REST automatizadas, autenticação via token e orquestração com Airflow.',
+    linkGit: 'https://github.com/seuusuario/projeto3',
+    linkSite: 'https://seudominio.com/apis',
+  },
+  {
+    imagem: '/Portfolio/images/projeto3.jpg',
+    titulo: 'Integração com APIs REST',
+    descricao: 'Desenvolvimento de pipelines com chamadas REST automatizadas, autenticação via token e orquestração com Airflow.',
+    linkGit: 'https://github.com/seuusuario/projeto4',
+    linkSite: 'https://seudominio.com/api2',
+  },
+];
 
 function Footer() {
   return (
@@ -40,7 +71,6 @@ function Footer() {
     </footer>
   );
 }
-
 
 
 export default function App() {
@@ -118,93 +148,106 @@ export default function App() {
         </div>
       </section>
 
-        {/* PROJETOS */}
+      {/* PROJETOS */}
       <section className="px-6 py-20" style={{ backgroundColor: "#0c1a33" }}>
         <h2 className="text-4xl font-bold mb-12 text-white text-center relative inline-block before:absolute before:left-0 before:top-2 before:w-1 before:h-full before:bg-red-500 pl-4">
           Projetos
         </h2>
 
         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {/* CARD 1 */}
-          <motion.div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden" whileHover={{ scale: 1.02 }}>
-            <img src="/Portfolio/images/projeto1.jpg" alt="Dashboard BI" className="w-full h-48 object-cover" onClick={() => setImagemExpandida('/Portfolio/images/projeto1.jpg')} />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-black mb-2">CryptoPrice Dashboard</h3>
-              <p className="text-gray-700 mb-4">
-                Dashboard interativo para acompanhar em tempo real a performance das 10 principais criptomoedas, com gráficos dinâmicos, rankings e análises visuais de mercado.
-              </p>
-              <div className="flex gap-4">
-                <a href="https://github.com/NathanThomaz/CryptoPrice-Dashboard" target="_blank" rel="noopener noreferrer"><FaGithub className="w-6 h-6 text-black hover:text-gray-700" /></a>
-                <a href="https://dashcrypto-app.streamlit.app/" target="_blank" rel="noopener noreferrer"><HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" /></a>
+          {/* CARDS  */}
+          {projetos.map((projeto, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+            >
+              <img
+                src={projeto.imagem}
+                alt={projeto.titulo}
+                className="w-full h-48 object-cover"
+                onClick={() => setImagemExpandida(projeto)}
+              />
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-black mb-2">{projeto.titulo}</h3>
+                <p className="text-gray-700 mb-4">{projeto.descricao}</p>
+                <div className="flex gap-4">
+                  <a
+                    href={projeto.linkGit}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub className="w-6 h-6 text-black hover:text-gray-700" />
+                  </a>
+                  <a
+                    href={projeto.linkSite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" />
+                  </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* CARD 2 */}
-          <motion.div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden" whileHover={{ scale: 1.02 }}>
-            <img src="/Portfolio/images/projeto2.png" alt="ETL Databricks" className="w-full h-48 object-cover" onClick={() => setImagemExpandida('/Portfolio/images/projeto2.png')} />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-black mb-2">Pipeline ETL com Databricks</h3>
-              <p className="text-gray-700 mb-4">
-                Processo automatizado com PySpark, particionamento Delta Lake e carga em camada Silver.
-              </p>
-              <div className="flex gap-4">
-                <a href="https://github.com/seuusuario/projeto2" target="_blank" rel="noopener noreferrer"><FaGithub className="w-6 h-6 text-black hover:text-gray-700" /></a>
-                <a href="https://seudominio.com/etl" target="_blank" rel="noopener noreferrer"><HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" /></a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* CARD 3 */}
-          <motion.div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden" whileHover={{ scale: 1.02 }}>
-            <img src="/Portfolio/images/projeto3.jpg" alt="Integração APIs" className="w-full h-48 object-cover" onClick={() => setImagemExpandida('/Portfolio/images/projeto3.jpg')} />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-black mb-2">Integração com APIs REST</h3>
-              <p className="text-gray-700 mb-4">
-                Desenvolvimento de pipelines com chamadas REST automatizadas, autenticação via token e orquestração com Airflow.
-              </p>
-              <div className="flex gap-4">
-                <a href="https://github.com/seuusuario/projeto3" target="_blank" rel="noopener noreferrer"><FaGithub className="w-6 h-6 text-black hover:text-gray-700" /></a>
-                <a href="https://seudominio.com/apis" target="_blank" rel="noopener noreferrer"><HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" /></a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* CARD 4 */}
-          <motion.div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden" whileHover={{ scale: 1.02 }}>
-            <img src="/Portfolio/images/projeto3.jpg" alt="Integração APIs 2" className="w-full h-48 object-cover" onClick={() => setImagemExpandida('/Portfolio/images/projeto3.jpg')} />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-black mb-2">Integração com APIs REST</h3>
-              <p className="text-gray-700 mb-4">
-                Desenvolvimento de pipelines com chamadas REST automatizadas, autenticação via token e orquestração com Airflow.
-              </p>
-              <div className="flex gap-4">
-                <a href="https://github.com/seuusuario/projeto4" target="_blank" rel="noopener noreferrer"><FaGithub className="w-6 h-6 text-black hover:text-gray-700" /></a>
-                <a href="https://seudominio.com/api2" target="_blank" rel="noopener noreferrer"><HiOutlineExternalLink className="w-6 h-6 text-black hover:text-gray-700" /></a>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* Imagem expandida */}
-        {imagemExpandida && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-            onClick={() => setImagemExpandida(null)}
-          >
-            <img
-              src={imagemExpandida}
-              alt="Imagem expandida"
-              className="max-w-full max-h-[90vh] rounded-lg shadow-xl cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation(); // evita que o clique feche duas vezes
-                setImagemExpandida(null); // fecha mesmo clicando na imagem
-              }}
-            />
-          </div>
-        )}
+      {imagemExpandida && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 px-4 overflow-y-auto"
+          onClick={() => setImagemExpandida(null)}
+        >
+          <div className="flex justify-center items-center min-h-screen py-10">
+            <div
+              className="bg-[#0c1a33] p-8 rounded-xl shadow-xl flex flex-col md:flex-row gap-10 max-w-6xl w-full items-center relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Botão X DENTRO da caixa */}
+              <button
+                onClick={() => setImagemExpandida(null)}
+                className="absolute top-4 right-4 text-white hover:text-red-500 text-3xl transition"
+                aria-label="Fechar"
+              >
+                <HiX />
+              </button>
 
+              {/* Imagem */}
+              <img
+                src={imagemExpandida.imagem}
+                alt={imagemExpandida.titulo}
+                className="max-w-md w-full rounded-lg shadow-md cursor-pointer"
+                onClick={() => setImagemExpandida(null)}
+              />
+
+              {/* Conteúdo */}
+              <div className="text-white max-w-xl space-y-6 text-center md:text-left">
+                <h2 className="text-5xl font-extrabold">{imagemExpandida.titulo}</h2>
+                <p className="text-xl leading-relaxed text-gray-300">{imagemExpandida.descricao}</p>
+                <div className="flex justify-center md:justify-start gap-4 flex-wrap">
+                  <a
+                    href={imagemExpandida.linkGit}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white text-black px-6 py-3 rounded text-lg font-medium hover:bg-gray-300 transition"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href={imagemExpandida.linkSite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-red-500 text-white px-6 py-3 rounded text-lg font-medium hover:bg-red-400 transition"
+                  >
+                    Acessar Site
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Onda decorativa invertida */}
       <div className="w-full overflow-hidden leading-none rotate-180 relative -mb-1 z-10">
