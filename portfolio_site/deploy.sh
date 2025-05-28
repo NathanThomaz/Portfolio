@@ -2,12 +2,15 @@
 
 set -e
 
+# Entra na pasta do projeto
+cd portfolio_site
+
 PROJECT_DIR_NAME="portfolio_site"
 
-echo "📦 Instalando dependências com npm install..."
+echo "Instalando dependências com npm install..."
 npm install
 
-echo "🔧 Gerando build com npm run build..."
+echo "Gerando build com npm run build..."
 npm run build
 
 # Caminho absoluto onde está o script
@@ -19,17 +22,17 @@ cp -r "$PROJECT_ROOT/dist/"* "$TMP_DIR"
 
 CURRENT_BRANCH=$(git branch --show-current)
 
-echo "🔄 Mudando para a branch 'page'..."
+echo "Mudando para a branch 'page'..."
 cd "$PROJECT_ROOT/.."
 git checkout page
 
-echo "🧹 Limpando arquivos antigos da branch page..."
+echo "Limpando arquivos antigos da branch page..."
 find . -mindepth 1 ! -regex '^./\.git\(/.*\)?' -delete
 
-echo "📦 Copiando build direto para raiz da branch page..."
+echo "Copiando build direto para raiz da branch page..."
 cp -r "$TMP_DIR"/* .
 
-echo "🧽 Limpando build temporária..."
+echo "Limpando build temporária..."
 rm -rf "$TMP_DIR"
 
 git add .
