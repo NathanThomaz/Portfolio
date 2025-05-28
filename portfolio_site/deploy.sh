@@ -3,7 +3,7 @@
 set -e
 
 # Entra na pasta do projeto
-cd portfolio_site
+cd "$(dirname "$0")"
 
 PROJECT_DIR_NAME="portfolio_site"
 
