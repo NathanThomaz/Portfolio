@@ -36,17 +36,19 @@ git add .
 
 # Tenta fazer commit — mas ignora erro se nada mudou
 if git commit -m "Deploy automático sem subpasta"; then
-  echo "✅ Commit realizado."
+  echo " Commit realizado."
 else
-  echo "ℹ️ Nenhuma mudança detectada para commit. Forçando push mesmo assim..."
+  echo " Nenhuma mudança detectada para commit. Forçando push mesmo assim..."
 fi
 
 # Push sempre (útil caso algo tenha sido sobrescrito mas sem hash novo)
 git push origin page
 
-
-echo "↩️ Voltando para a branch '$CURRENT_BRANCH'..."
+echo " Voltando para a branch '$CURRENT_BRANCH'..."
 git checkout "$CURRENT_BRANCH"
 cd "$PROJECT_ROOT"
 
-echo "✅ Deploy finalizado com sucesso!"
+echo " Deploy finalizado com sucesso!"
+
+# Comando para dar permissão de execução ao script
+chmod +x deploy.sh
