@@ -56,16 +56,6 @@ Este portfólio foi criado com os seguintes propósitos:
 
 ---
 
-## 🔮 Melhorias Futuras
-
-- 🌙 Alternância de tema claro/escuro;
-- 🌐 Suporte a múltiplos idiomas (i18n);
-- 📱 Otimização SEO para melhor indexação em mecanismos de busca;
-- 💬 Integração com formulário de contato dinâmico (ex: Formspree, EmailJS);
-- 🔧 Backend com **Express.js**, **Firebase** ou outras soluções escaláveis.
-
----
-
 ## 👨‍💻 Autor
 
 **Nathan Thomaz**  
